@@ -1,9 +1,12 @@
 <div>
+    <h3>persons by color component</h3>
     @if(error) {
+        <h3>error section</h3>
         <h2>
             <p>{{ error }}</p>
         </h2>
     } @else {
+        <h3>persons by color table</h3>
         <h3>
             <a [routerLink]="['']" routerLinkActive="active" ariaCurrentWhenActive="page">
                 All&nbsp;persons

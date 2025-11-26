@@ -1,9 +1,12 @@
 <div>
+    <h3>persons table component</h3>
     @if(error) {
+        <h3>error section</h3>
         <h2>
             <p>{{ error }}</p>
         </h2>
     } @else {
+        <h3>all persons table</h3>
         <table mat-table matSort [dataSource]=personsDataSource>
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
