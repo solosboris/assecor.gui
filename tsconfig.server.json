@@ -1,11 +1,11 @@
 {
-  "extends": "./tsconfig.app.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./.angular/server",
     "module": "esnext",
+    "moduleResolution": "nodenext",
     "types": ["node"]
   },
-  "files": [
-    "src/main.server.ts"
-  ]
+  "files": ["src/main.server.ts"],
+  "include": ["src/**/*.ts"]
 }
