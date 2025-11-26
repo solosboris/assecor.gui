@@ -85,11 +85,19 @@ typescript                      5.9.3
 
 npm uninstall @angular-devkit/build-angular
 npm install --save-dev @angular-devkit/build-angular
-
 ng new assecor.gui --routing --no-minimal
 ng add @angular/material
+npm install @angular/platform-browser-dynamic@20
+npm install @angular/animations@20
+npm install zone.js@0.15.1 --save
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+npm install zone.js@0.15 --save
 ng generate component person-table
 ng generate component personsbycolor
+npm install
+ng build
 
 The packages from the directory node_modules are downloaded by installation and not included to the current git repository.
 

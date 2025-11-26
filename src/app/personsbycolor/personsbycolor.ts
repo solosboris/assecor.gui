@@ -1,13 +1,18 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { RESTService } from '../../services/restservice';
 
 @Component({
-  standalone: false,
   selector: 'personsbycolor',
+  standalone: true,
+  imports: [CommonModule, MatTableModule, HttpClientModule, RouterModule],
   templateUrl: './personsbycolor.html',
-  styleUrl: '../../styles.css'
+  styleUrls: ['../../styles.css']
 })
 export class Personsbycolor implements OnInit {
 

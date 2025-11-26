@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterModule, MatTableModule, BrowserAnimationsModule, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: '../styles.css'
+  styleUrls: ['../styles.css']
 })
 export class AppComponent {
-  title = "Assecor GUI";
+  title = 'Assecor GUI';
 }
