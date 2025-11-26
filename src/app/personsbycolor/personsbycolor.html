@@ -8,6 +8,7 @@
             <a [routerLink]="['']" routerLinkActive="active" ariaCurrentWhenActive="page">
                 All&nbsp;persons
             </a>
+            <router-outlet></router-outlet>
         </h3>
         <table mat-table matSort [dataSource]=personsDataSource>
             <ng-container matColumnDef="id">
