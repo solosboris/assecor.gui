@@ -53,6 +53,7 @@
                     <a [routerLink]="['color', person.color]" routerLinkActive="active" ariaCurrentWhenActive="page">
                         {{person.color}}
                     </a>
+                    <router-outlet></router-outlet>
                 </td>
             </ng-container>
 
@@ -61,6 +62,5 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;">
             </tr>
         </table>
-        <router-outlet></router-outlet>
     }
 </div>
