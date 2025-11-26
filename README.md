@@ -57,3 +57,40 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+The additional instructions for usage of tables, routing, and CORS proxy are
+
+npm uninstall -g @angular/cli
+npm install -g @angular/cli@20
+
+ng version
+Angular CLI: 20.3.11
+Node: 22.20.0
+Package Manager: npm 10.9.3
+OS: win32 x64
+
+Package                         Version
+---------------------------------------
+@angular-devkit/architect       0.2100.0
+@angular-devkit/build-angular   21.0.0
+@angular-devkit/core            21.0.0
+@angular-devkit/schematics      20.3.11 (cli-only)
+@angular/build                  21.0.0
+@angular/cli                    20.3.11 (cli-only)
+@angular/compiler               21.0.0
+@angular/compiler-cli           21.0.0
+@schematics/angular             20.3.11 (cli-only)
+rxjs                            7.8.2
+typescript                      5.9.3
+
+npm uninstall @angular-devkit/build-angular
+npm install --save-dev @angular-devkit/build-angular
+
+ng new assecor.gui --routing --no-minimal
+ng add @angular/material
+ng generate component person-table
+ng generate component personsbycolor
+
+The packages from the directory node_modules are downloaded by installation and not included to the current git repository.
+
+ng serve --open --proxy-config src\proxy.conf.json
