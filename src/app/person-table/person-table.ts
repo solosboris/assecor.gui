@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material/table';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 import { RESTService } from '../../services/restservice';
 
 @Component({
@@ -16,36 +15,26 @@ import { RESTService } from '../../services/restservice';
 })
 export class PersonTable implements OnInit {
 
-  personsDataSource: MatTableDataSource<any> =
-    new MatTableDataSource();
-  displayedColumns: string[] = [
-   "id",
-   "name",
-   "lastName",
-   "zip",
-   "city",
-   "color"
-  ];
-  // Variable to hold error message
+  personsDataSource = new MatTableDataSource<any>();
+  displayedColumns: string[] = ["id", "name", "lastName", "zip", "city", "color"];
   error: string | null = null;
 
   constructor(
     private restService: RESTService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.error = null;
-    console.info('all persons');
     this.restService.allPersons().subscribe({
-      next: (dtosContainer) => {
-        this.personsDataSource = new MatTableDataSource(
-          dtosContainer.dtos
+      next: (dto) => {
+        this.personsDataSource.data = dto.dtos;
+        console.info(
+          'PersonTable.ngOnInit data ' + this.personsDataSource.data.length
         );
       },
-      error: (err) => {
-        this.error = 'Failed to load all persons';
-        console.error('Error to load all persons: ', err);
+      error: () => {
+        this.error = "Failed to load all persons";
+        console.error('PersonTable.ngOnInit error ', this.error);
       }
     });
   }

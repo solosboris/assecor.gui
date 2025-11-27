@@ -1,10 +1,9 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material/table';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 import { RESTService } from '../../services/restservice';
 
 @Component({
@@ -16,52 +15,31 @@ import { RESTService } from '../../services/restservice';
 })
 export class Personsbycolor implements OnInit {
 
-  personsDataSource: MatTableDataSource<any> =
-    new MatTableDataSource();
-  displayedColumns: string[] = [
-   "id",
-   "name",
-   "lastName",
-   "zip",
-   "city",
-   "color"
-  ];
-  // Variable to hold error message
+  personsDataSource = new MatTableDataSource<any>();
+  displayedColumns: string[] = ["id", "name", "lastName", "zip", "city", "color"];
   error: string | null = null;
 
   constructor(
     private restService: RESTService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.error = null;
-    console.info("personsByColor start");
     const color = this.route.snapshot.paramMap.get('color');
-    if (!color) {
-      console.info("personsByColor no param color");
-      return;
-    }
-    console.info("color ", color);
+    if (!color) return;
+
     this.restService.personsByColor(color).subscribe({
-      next: (dtosContainer) => {
-        this.personsDataSource.data = dtosContainer.dtos;
-        console.info("personsByColor dtos ",
-          this.personsDataSource.data.length
-        );
+      next: (dto) => {
+        this.personsDataSource.data = dto.dtos;
+        console.info(
+          'Personsbycolor.ngOnInit data ' + this.personsDataSource.data.length
+        );        
       },
-      error: (err) => {
-        this.error = 'Failed to load persons by the color ' + color;
-        console.error('Error to load persons ', err);
+      error: () => {
+        this.error = "Failed to load persons by the color";
+        console.error('Personsbycolor.ngOnInit error ', this.error);
       }
     });
-
-    this.personsDataSource = new MatTableDataSource(
-      this.personsDataSource.data
-    );
-    console.info("personsByColor received items ",
-      this.personsDataSource.data.length
-    );
   }
 
 }
