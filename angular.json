@@ -34,10 +34,35 @@
             "outputPath": "dist/server",
             "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json"
-          }
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "assecor.gui:build",
+            "proxyConfig": "src/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "assecor.gui:build:production"
+            },
+            "development": {
+              "buildTarget": "assecor.gui:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
         }
       }
     }

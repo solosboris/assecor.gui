@@ -1,11 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./.angular/server",
-    "module": "esnext",
-    "moduleResolution": "nodenext",
+    "outDir": "./out-tsc/server",
+    "module": "NodeNext",
     "types": ["node"]
   },
   "files": ["src/main.server.ts"],
-  "include": ["src/**/*.ts"]
+  "angularCompilerOptions": {
+    "enableIvy": true
+  }
 }
