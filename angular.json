@@ -25,7 +25,14 @@
             "styles": ["src/custom-theme.scss", "src/styles.css"]
           },
           "configurations": {
-            "production": { "optimization": true }
+            "production": { "optimization": true },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "vendorChunk": true,
+              "buildOptimizer": false
+            }
           }
         },
         "server": {
