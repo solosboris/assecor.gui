@@ -99,6 +99,46 @@ ng generate component personsbycolor
 npm install
 ng build
 
+ng update @angular/core@21 @angular/cli@21 --force
+ng version
+Angular CLI       : 21.0.1
+Angular           : 21.0.1
+Node.js           : 22.20.0
+Package Manager   : npm 10.9.3
+Operating System  : win32 x64
+
+┌───────────────────────────────────┬───────────────────┬───────────────────┐
+│ Package                           │ Installed Version │ Requested Version │
+├───────────────────────────────────┼───────────────────┼───────────────────┤
+│ @angular/animations               │ 21.0.1            │ ^21.0.1           │
+│ @angular/build                    │ 21.0.1            │ ^21.0.1           │
+│ @angular/cdk                      │ 20.2.14           │ ^20.2.14          │
+│ @angular/cli                      │ 21.0.1            │ ^21.0.1           │
+│ @angular/common                   │ 21.0.1            │ ^21.0.1           │
+│ @angular/compiler                 │ 21.0.1            │ ^21.0.1           │
+│ @angular/compiler-cli             │ 21.0.1            │ ^21.0.1           │
+│ @angular/core                     │ 21.0.1            │ ^21.0.1           │
+│ @angular/forms                    │ 21.0.1            │ ^21.0.1           │
+│ @angular/material                 │ 20.2.14           │ ^20.2.14          │
+│ @angular/platform-browser         │ 21.0.1            │ ^21.0.1           │
+│ @angular/platform-browser-dynamic │ 21.0.1            │ ^21.0.1           │
+│ @angular/platform-server          │ 21.0.1            │ ^21.0.1           │
+│ @angular/router                   │ 21.0.1            │ ^21.0.1           │
+│ @angular/ssr                      │ 21.0.1            │ ^21.0.1           │
+│ rxjs                              │ 7.8.2             │ ~7.8.0            │
+│ typescript                        │ 5.9.3             │ ~5.9.2            │
+│ zone.js                           │ 0.15.1            │ ^0.15.1           │
+└───────────────────────────────────┴───────────────────┴───────────────────┘
+
+remove all bundles
+
+npm install
+ng cache clean
+ng build
+ng build --configuration=production
+ng run assecor.gui:server --configuration=production
+
+
 The packages from the directory node_modules are downloaded by installation and not included to the current git repository.
 
 ng serve --open --proxy-config src\proxy.conf.json
