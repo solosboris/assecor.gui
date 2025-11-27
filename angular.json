@@ -15,7 +15,13 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": ["public"],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/public",
+                "output": "/"
+              }
+            ],
             "styles": ["src/custom-theme.scss", "src/styles.css"]
           },
           "configurations": {
