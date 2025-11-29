@@ -96,6 +96,8 @@ npm install
 npm install zone.js@0.15 --save
 ng generate component person-table
 ng generate component personsbycolor
+ng generate component addperson
+ng generate component personbyid
 npm install
 ng build
 
@@ -139,6 +141,7 @@ ng build --configuration=production
 ng run assecor.gui:server --configuration=production
 
 
-The packages from the directory node_modules are downloaded by installation and not included to the current git repository.
+The packages from the directory node_modules are downloaded by project's generation
+and not included to the current git repository.
 
 ng serve --open --proxy-config src\proxy.conf.json

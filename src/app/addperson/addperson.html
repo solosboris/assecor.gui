@@ -1,0 +1,28 @@
+<div>
+    <h3>Add&nbsp;person</h3>
+    <p>{{ error }}</p>
+    <h3>
+        <a [routerLink]="['']" routerLinkActive="active" ariaCurrentWhenActive="page">
+            All&nbsp;persons
+        </a>
+    </h3>
+
+    <form (ngSubmit)="addPerson()">
+        <div>
+            <input [(ngModel)]="name" name="name" type="string" placeholder="Name"/>
+        </div>
+        <div>
+            <input [(ngModel)]="lastName" name="lastName" type="string" placeholder="Last name"/>
+        </div>
+            <input [(ngModel)]="zip" name="zip" type="string" placeholder="ZIP"/>
+        <div>
+            <input [(ngModel)]="city" name="city" type="string" placeholder="City"/>
+        </div>
+        <div>
+            <input [(ngModel)]="color" name="color" type="string" placeholder="Color"/>
+        </div>
+        <div>
+            <button type="submit">{{ 'add person' }}</button>
+        </div>
+    </form>
+</div>
