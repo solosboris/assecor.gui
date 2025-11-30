@@ -27,16 +27,13 @@ export class Addperson implements OnInit {
   zip: string = '';
   city: string = '';
   color: string = '';
-  person: PersonDTO;
   error: string | null = null;
 
   constructor(
     private restService: RESTService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    this.person = new PersonDTO();
-  }
+  ) { }
 
   ngOnInit(): void {
     console.info('Addperson.ngOnInit');
@@ -53,18 +50,17 @@ export class Addperson implements OnInit {
 
     if (this.areValues()) {
       this.restService.addPerson(createPerson).subscribe({    
-        next: (person) => {
-          this.person = person;
-          console.info('Addperson.addPerson response ', this.person);
-          if (!isNaN(this.person.id) && this.person.id > 0) {
+        next: (personId) => {
+          console.info('Addperson.addPerson response ', personId);
+          if (!isNaN(personId) && personId > 0) {
             // Redirect to the pperson view
-            const navigaeToPerson = 'person/' + this.person.id;
+            const navigaeToPerson = 'person/' + personId;
             console.info('Addperson.addPerson to ' + navigaeToPerson);
             this.router.navigate([navigaeToPerson]);
           } else {
             console.info(
               'Addperson.addPerson response is failed',
-              this.person.id
+              personId
             );
           }
         },
