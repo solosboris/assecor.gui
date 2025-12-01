@@ -1,12 +1,13 @@
-<div>
-    <h3>Add&nbsp;person</h3>
-    <p>{{ error }}</p>
-    <h3>
-        <a [routerLink]="['']" routerLinkActive="active" ariaCurrentWhenActive="page">
-            All&nbsp;persons
-        </a>
-    </h3>
-
+<div class="centered-text">
+    <div><h3>{{ error }}</h3></div>
+    <div><h3>Add&nbsp;person</h3></div>
+    <div>
+        <h3>
+            <a [routerLink]="['']" routerLinkActive="active" ariaCurrentWhenActive="page">
+                All&nbsp;persons
+            </a>
+        </h3>
+    </div>
     <form (ngSubmit)="addPerson()">
         <div>
             <input [(ngModel)]="name" name="name" type="string" placeholder="Name"/>

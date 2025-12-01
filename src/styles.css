@@ -26,5 +26,17 @@
         }
     }
 }
+
 html, body { height: 100%; }
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.centered-text {
+  justify-content: center; /* horizontal centering */
+  align-items: center;     /* vertical centering */
+  text-align: center;      /* centers text itself */  
+  font-family: "Times New Roman", serif;  
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;    
+}
