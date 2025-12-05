@@ -117,4 +117,6 @@ Operating System  : win32 x64
 The packages from the directory node_modules are downloaded by project's generation
 and not included to the current git repository.
 
+npm install --save-dev semantic-release @semantic-release/git @semantic-release/changelog @semantic-release/github @semantic-release/npm
+
 ng serve --open --proxy-config src\proxy.conf.json
