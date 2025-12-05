@@ -2,8 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "target": "ES2022",
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "preserve",
     "useDefineForClassFields": false,
     "importHelpers": true,
     "types": [],

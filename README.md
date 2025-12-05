@@ -77,6 +77,42 @@ ng build
 #ng build --configuration=production
 #ng run assecor.gui:server --configuration=production
 
+npm install
+npm install @angular/core@21.0.1 @angular/common@21.0.1 @angular/compiler@21.0.1 @angular/forms@21.0.1 @angular/platform-browser@21.0.1 @angular/platform-browser-dynamic@21.0.1 @angular/router@21.0.1 @angular/animations@21.0.1 @angular/platform-server@21.0.1 @angular/ssr@21.0.1 --save
+
+npm install @angular/material@21.0.2 @angular/cdk@21.0.2 --save
+
+ng version
+
+Angular CLI       : 21.0.1
+Angular           : 21.0.1
+Node.js           : 22.20.0
+Package Manager   : npm 10.9.3
+Operating System  : win32 x64
+
+┌───────────────────────────────────┬───────────────────┬───────────────────┐
+│ Package                           │ Installed Version │ Requested Version │
+├───────────────────────────────────┼───────────────────┼───────────────────┤
+│ @angular-devkit/build-angular     │ 21.0.1            │ ^21.0.1           │
+│ @angular/animations               │ 21.0.1            │ ^21.0.1           │
+│ @angular/build                    │ 21.0.1            │ ^21.0.1           │
+│ @angular/cdk                      │ 21.0.2            │ ^21.0.2           │
+│ @angular/cli                      │ 21.0.1            │ ^21.0.1           │
+│ @angular/common                   │ 21.0.1            │ ^21.0.1           │
+│ @angular/compiler                 │ 21.0.1            │ ^21.0.1           │
+│ @angular/compiler-cli             │ 21.0.1            │ ^21.0.1           │
+│ @angular/core                     │ 21.0.1            │ ^21.0.1           │
+│ @angular/forms                    │ 21.0.1            │ ^21.0.1           │
+│ @angular/material                 │ 21.0.2            │ ^21.0.2           │
+│ @angular/platform-browser         │ 21.0.1            │ ^21.0.1           │
+│ @angular/platform-browser-dynamic │ 21.0.1            │ ^21.0.1           │
+│ @angular/platform-server          │ 21.0.1            │ ^21.0.1           │
+│ @angular/router                   │ 21.0.1            │ ^21.0.1           │
+│ @angular/ssr                      │ 21.0.1            │ ^21.0.1           │
+│ rxjs                              │ 7.8.2             │ ~7.8.0            │
+│ typescript                        │ 5.9.3             │ ~5.9.2            │
+│ zone.js                           │ 0.15.1            │ ^0.15.1           │
+└───────────────────────────────────┴───────────────────┴───────────────────┘
 
 The packages from the directory node_modules are downloaded by project's generation
 and not included to the current git repository.
