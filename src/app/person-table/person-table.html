@@ -1,70 +1,104 @@
 <div>
-    <div class="centered-text">
-        <div><h3>{{ error }}</h3></div>
-        <div><h3>All&nbsp;persons</h3></div>
-        <div>
-            <h3>
-                <a [routerLink]="['/addperson']" routerLinkActive="active" ariaCurrentWhenActive="page">
-                    Add&nbsp;person
-                </a>
-            </h3>
-        </div>
+  <div class="centered-text">
+    <div><h3>{{ error }}</h3></div>
+    <div><h3>All&nbsp;persons</h3></div>
+    <div>
+      <h3>
+        <span routerLinkActive="active">
+            <a [routerLink]="['/addperson']">Add&nbsp;person</a>
+        </span>
+    </h3>
     </div>
-    <table class="mat-table" mat-table matSort [dataSource]=personsDataSource>
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Id
-            </th>
-            <td mat-cell *matCellDef="let person">
-                {{person.id}}
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Name
-            </th>
-            <td mat-cell *matCellDef="let person">
-                {{person.name}}
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Last&nbsp;name
-            </th>
-            <td mat-cell *matCellDef="let person">
-                {{person.lastName}}
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="zip">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Zip
-            </th>
-            <td mat-cell *matCellDef="let person">
-                {{person.zip}}
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="city">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                City
-            </th>
-            <td mat-cell *matCellDef="let person">
-                {{person.city}}
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="color">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Color
-            </th>
-            <td class="centered-text" mat-cell *matCellDef="let person">
-                <a [routerLink]="['/color', person.color]" routerLinkActive="active" ariaCurrentWhenActive="page">
-                    {{person.color}}
-                </a>
-            </td>
-        </ng-container>
+  </div>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns">
-        </tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-        </tr>
-    </table>
+  <table mat-table matSort [dataSource]="personsDataSource" class="mat-elevation-z2">
+    <!-- ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td
+        mat-cell
+        *matCellDef="let person"
+        [cdkContextMenuTriggerFor]="menu"
+        (cdkContextMenuOpened)="onMenuOpen(person)">
+        {{ person.id }}
+      </td>
+    </ng-container>
+
+    <!-- Name -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td
+        mat-cell
+        *matCellDef="let person"
+        [cdkContextMenuTriggerFor]="menu"
+        (cdkContextMenuOpened)="onMenuOpen(person)">
+        {{ person.name }}
+      </td>
+    </ng-container>
+
+    <!-- Last Name -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Last&nbsp;name</th>
+      <td
+        mat-cell
+        *matCellDef="let person"
+        [cdkContextMenuTriggerFor]="menu"
+        (cdkContextMenuOpened)="onMenuOpen(person)">
+        {{ person.lastName }}
+      </td>
+    </ng-container>
+
+    <!-- ZIP -->
+    <ng-container matColumnDef="zip">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Zip</th>
+      <td
+        mat-cell
+        *matCellDef="let person"
+        [cdkContextMenuTriggerFor]="menu"
+        (cdkContextMenuOpened)="onMenuOpen(person)">
+        {{ person.zip }}
+      </td>
+    </ng-container>
+
+    <!-- City -->
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+      <td
+        mat-cell
+        *matCellDef="let person"
+        [cdkContextMenuTriggerFor]="menu"
+        (cdkContextMenuOpened)="onMenuOpen(person)">
+        {{ person.city }}
+      </td>
+    </ng-container>
+
+    <!-- Color -->
+    <ng-container matColumnDef="color">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Color</th>
+      <td
+        mat-cell
+        *matCellDef="let person"
+        class="centered-text"
+        [cdkContextMenuTriggerFor]="menu"
+        (cdkContextMenuOpened)="onMenuOpen(person)">
+        <a [routerLink]="['/color', person.color]" routerLinkActive="active" ariaCurrentWhenActive="page">
+          {{ person.color }}
+        </a>
+      </td>
+    </ng-container>
+
+    <!-- Table rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+<!-- Context Menu -->
+<ng-template #menu>
+    <div cdkMenu>
+        <button cdkMenuItem (click)="showPerson()">
+            Show {{ selectedRow?.id }}
+        </button>
+    </div>
+</ng-template>
+
 </div>

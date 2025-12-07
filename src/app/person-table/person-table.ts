@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import { RouterModule, ActivatedRoute } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import { CdkContextMenuTrigger } from '@angular/cdk/menu';
+import { CdkMenuModule } from '@angular/cdk/menu';
+import { ChangeDetectionStrategy } from '@angular/core';
 import { RESTService } from '../../services/restservice';
 
 @Component({
   selector: 'persons-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, HttpClientModule, RouterModule],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatMenuModule,
+    HttpClientModule,
+    RouterModule,
+    CdkContextMenuTrigger,
+    CdkMenuModule
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './person-table.html',
   styleUrls: ['../../styles.css']
 })
@@ -21,8 +35,20 @@ export class PersonTable implements OnInit {
 
   constructor(
     private restService: RESTService,
-    private route: ActivatedRoute
+    private router: Router
   ) {}
+
+  selectedRow: any = null;
+
+  onMenuOpen(row: any) {
+    this.selectedRow = row;
+  }
+  
+  showPerson() {
+    const navigaeToPerson = 'person/' + this.selectedRow.id;
+    console.info('Contextmenu.showPerson to ' + navigaeToPerson);
+    this.router.navigate([navigaeToPerson]);
+  }
 
   ngOnInit(): void {
     this.restService.allPersons().subscribe({
