@@ -32,6 +32,7 @@ export class PersonTable implements OnInit {
   personsDataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = ["id", "name", "lastName", "zip", "city", "color"];
   error: string | null = null;
+  isToShowByColor = false;
 
   constructor(
     private restService: RESTService,
@@ -42,12 +43,37 @@ export class PersonTable implements OnInit {
 
   onMenuOpen(row: any) {
     this.selectedRow = row;
+    console.info(
+      'PersonTable.onMenuOpen id ' + this.selectedRow.id +
+      ' color ' + this.selectedRow.color
+    );
+    this.restService.personsByColorCnt(this.selectedRow.color)
+      .subscribe({
+        next: (cnt) => {
+          this.isToShowByColor = !isNaN(cnt) && (cnt > 1);
+          console.info(
+            'PersonTable.onMenuOpen isToShowByColor ' + this.isToShowByColor
+          );
+        },
+        error: () => {
+          this.error = "Failed to ask for isToShowByColor";
+          console.error('PersonTable.onMenuOpen error ', this.error);
+        }
+      });
   }
   
   showPerson() {
     const navigaeToPerson = 'person/' + this.selectedRow.id;
     console.info('Contextmenu.showPerson to ' + navigaeToPerson);
     this.router.navigate([navigaeToPerson]);
+  }
+
+  showByColor() {
+    const navigaeToPersonsByColor = 'color/' + this.selectedRow.color;
+    console.info(
+      'Contextmenu.showByColor to ' + navigaeToPersonsByColor
+    );
+    this.router.navigate([navigaeToPersonsByColor]);
   }
 
   ngOnInit(): void {

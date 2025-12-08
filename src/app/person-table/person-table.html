@@ -69,11 +69,20 @@
 
 <!-- Context Menu -->
 <ng-template #menu>
-    <div cdkMenu>
-        <button cdkMenuItem (click)="showPerson()">
-            Show {{ selectedRow?.id }}
-        </button>
+  <div cdkMenu>
+    <div>
+      <button cdkMenuItem (click)="showPerson()">
+        Show {{ selectedRow?.id }}
+      </button>
     </div>
+    @if (isToShowByColor) {
+      <div>
+        <button cdkMenuItem (click)="showByColor()">
+          Show {{ selectedRow?.color }}
+        </button>
+      </div>
+    }
+  </div>
 </ng-template>
 
 </div>
