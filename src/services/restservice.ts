@@ -28,6 +28,10 @@ export class RESTService {
     return this.http.get(`${this.baseUrl}/color/${color}`);
   }//get persons by color; returns DTOsContainer from "../models/dtoscontainer.model";
 
+  personsByColorCnt(color: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/colorcounter/${color}`);
+  }//get persons count by color; returns int;
+
   addPerson(person: PersonDTO): Observable<any> {
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
