@@ -1,5 +1,5 @@
 <div>
-    <table class="mat-table" mat-table matSort [dataSource]=personsDataSource>
+    <table class="mat-table" mat-table [dataSource]="personsDataSource" matSort>
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Id

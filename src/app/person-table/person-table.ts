@@ -1,11 +1,11 @@
-import { Component, ElementRef, ViewChild, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
 import { CdkContextMenuTrigger } from '@angular/cdk/menu';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { ChangeDetectionStrategy } from '@angular/core';
@@ -17,6 +17,7 @@ import { RESTService } from '../../services/restservice';
   imports: [
     CommonModule,
     MatTableModule,
+    MatSortModule,
     MatMenuModule,
     HttpClientModule,
     RouterModule,
@@ -27,8 +28,9 @@ import { RESTService } from '../../services/restservice';
   templateUrl: './person-table.html',
   styleUrls: ['../../styles.css']
 })
-export class PersonTable implements OnInit {
+export class PersonTable implements OnInit, AfterViewInit {
 
+  @ViewChild(MatSort) sort!: MatSort;
   personsDataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = ["id", "name", "lastName", "zip", "city", "color"];
   error: string | null = null;
@@ -40,6 +42,14 @@ export class PersonTable implements OnInit {
   ) {}
 
   selectedRow: any = null;
+
+  ngAfterViewInit() {
+    this.personsDataSource.sort = this.sort;
+    console.info(
+        'PersonTable.ngAfterViewInit sort set to elements ' +
+          this.personsDataSource.data.length
+      );
+  }
 
   onMenuOpen(row: any) {
     this.selectedRow = row;
