@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
 import { Foundpersontable } from './foundpersontable';
 
 describe('Foundpersontable', () => {
@@ -8,16 +8,19 @@ describe('Foundpersontable', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Foundpersontable]
-    })
-    .compileComponents();
+      imports: [Foundpersontable],
+      providers: [
+        provideRouter([]) // THIS FIXES ActivatedRoute
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Foundpersontable);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

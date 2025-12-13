@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
 import { PersonTable } from './person-table';
 
 describe('PersonTable', () => {
@@ -8,9 +8,11 @@ describe('PersonTable', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PersonTable]
-    })
-    .compileComponents();
+      imports: [PersonTable],
+      providers: [
+        provideRouter([]) // THIS FIXES ActivatedRoute
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PersonTable);
     component = fixture.componentInstance;
@@ -20,4 +22,5 @@ describe('PersonTable', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

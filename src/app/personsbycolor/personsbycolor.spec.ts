@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute } from '@angular/router';
 import { Personsbycolor } from './personsbycolor';
 
 describe('Personsbycolor', () => {
@@ -8,9 +8,20 @@ describe('Personsbycolor', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Personsbycolor]
-    })
-    .compileComponents();
+      imports: [Personsbycolor],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: () => 'white'
+              }
+            }
+          }
+        }
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Personsbycolor);
     component = fixture.componentInstance;
@@ -20,4 +31,5 @@ describe('Personsbycolor', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

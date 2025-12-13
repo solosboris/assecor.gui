@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, ActivatedRoute } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { RESTService } from '../../services/restservice';
 import { PersonDTO } from '../../models/persondto.model';
@@ -31,7 +31,6 @@ export class Addperson implements OnInit {
 
   constructor(
     private restService: RESTService,
-    private route: ActivatedRoute,
     private router: Router
   ) { }
 

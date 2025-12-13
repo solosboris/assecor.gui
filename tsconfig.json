@@ -2,12 +2,10 @@
   "compileOnSave": false,
   "compilerOptions": {
     "target": "ES2022",
-    "module": "preserve",
-    "useDefineForClassFields": false,
-    "importHelpers": true,
-    "types": [],
-    "allowSyntheticDefaultImports": true,
-    "strict": true
+    "module": "es2022",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
