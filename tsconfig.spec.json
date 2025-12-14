@@ -1,12 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist/server",
-    "module": "esnext",
-    "types": ["node"],
-    "target": "es2019"
+    "outDir": "./out-tsc/spec",
+    "types": ["jasmine"]
   },
-  "files": [
-    "main.server.ts"
-  ]
+  "files": ["src/test.ts"],
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
 }

@@ -5,11 +5,11 @@
     "types": []
   },
   "files": [
-    "src/main.ts",
-    "src/main.server.ts"
+    "src/main.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",
-    "src/test.ts"
+    "src/test.ts",
+    "src/main.server.ts"
   ]
 }

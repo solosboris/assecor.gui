@@ -80,11 +80,65 @@ ng build
 npm install
 npm install @angular/core@21.0.1 @angular/common@21.0.1 @angular/compiler@21.0.1 @angular/forms@21.0.1 @angular/platform-browser@21.0.1 @angular/platform-browser-dynamic@21.0.1 @angular/router@21.0.1 @angular/animations@21.0.1 @angular/platform-server@21.0.1 @angular/ssr@21.0.1 --save
 
+
 npm install @angular/material@21.0.2 @angular/cdk@21.0.2 --save
+npm install --save-dev semantic-release @semantic-release/git @semantic-release/changelog @semantic-release/github @semantic-release/npm
+
+// provide unit tests
+npm install --save-dev karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter jasmine-core @types/jasmine
+npm install --save-dev undici-types
+
+npm audit fix
+
+@angular/compiler  21.0.0-next.0 - 21.0.1
+Severity: high
+Angular Stored XSS Vulnerability via SVG Animation, SVG URL and MathML Attributes - https://github.com/advisories/GHS
+4hv-rgfq-gp49
+fix available via `npm audit fix`
+node_modules/@angular/compiler
+  @angular/compiler-cli  21.0.0-next.0 - 21.0.1
+  Depends on vulnerable versions of @angular/compiler
+  node_modules/@angular/compiler-cli
+  @angular/core  21.0.0-next.0 - 21.0.1
+  Depends on vulnerable versions of @angular/compiler
+  node_modules/@angular/core
+    @angular/animations  21.0.0-next.0 - 21.0.1
+    Depends on vulnerable versions of @angular/core
+    node_modules/@angular/animations
+    @angular/common  21.0.0-next.0 - 21.0.1
+    Depends on vulnerable versions of @angular/core
+    node_modules/@angular/common
+      @angular/forms  4.4.0-RC.0 - 4.4.0 || 21.0.0-next.0 - 21.0.1
+      Depends on vulnerable versions of @angular/common
+      Depends on vulnerable versions of @angular/core
+      Depends on vulnerable versions of @angular/platform-browser
+      node_modules/@angular/forms
+    @angular/platform-browser  21.0.0-next.0 - 21.0.1
+    Depends on vulnerable versions of @angular/animations
+    Depends on vulnerable versions of @angular/common
+    Depends on vulnerable versions of @angular/core
+    node_modules/@angular/platform-browser
+    @angular/router  10.0.0-next.0 - 10.0.0-rc.1 || 21.0.0-next.0 - 21.0.1
+    Depends on vulnerable versions of @angular/common
+    Depends on vulnerable versions of @angular/core
+    Depends on vulnerable versions of @angular/platform-browser
+    node_modules/@angular/router
+  @angular/platform-browser-dynamic  21.0.0-next.0 - 21.0.1
+  Depends on vulnerable versions of @angular/common
+  Depends on vulnerable versions of @angular/compiler
+  Depends on vulnerable versions of @angular/core
+  Depends on vulnerable versions of @angular/platform-browser
+  node_modules/@angular/platform-browser-dynamic
+  @angular/platform-server  21.0.0-next.0 - 21.0.1
+  Depends on vulnerable versions of @angular/common
+  Depends on vulnerable versions of @angular/compiler
+  Depends on vulnerable versions of @angular/core
+  Depends on vulnerable versions of @angular/platform-browser
+  node_modules/@angular/platform-server
 
 ng version
 
-Angular CLI       : 21.0.1
+Angular CLI       : 21.0.3
 Angular           : 21.0.1
 Node.js           : 22.20.0
 Package Manager   : npm 10.9.3
@@ -97,7 +151,7 @@ Operating System  : win32 x64
 │ @angular/animations               │ 21.0.1            │ ^21.0.1           │
 │ @angular/build                    │ 21.0.1            │ ^21.0.1           │
 │ @angular/cdk                      │ 21.0.2            │ ^21.0.2           │
-│ @angular/cli                      │ 21.0.1            │ ^21.0.1           │
+│ @angular/cli                      │ 21.0.3            │ ^21.0.1           │
 │ @angular/common                   │ 21.0.1            │ ^21.0.1           │
 │ @angular/compiler                 │ 21.0.1            │ ^21.0.1           │
 │ @angular/compiler-cli             │ 21.0.1            │ ^21.0.1           │
@@ -119,6 +173,7 @@ and not included to the current git repository.
 
 ng generate component foundpersontable
 
-npm install --save-dev semantic-release @semantic-release/git @semantic-release/changelog @semantic-release/github @semantic-release/npm
-
+npm ci
+npm audit fix
+ng test
 ng serve --open --proxy-config src\proxy.conf.json

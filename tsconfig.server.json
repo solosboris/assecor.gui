@@ -3,10 +3,8 @@
   "compilerOptions": {
     "outDir": "./out-tsc/server",
     "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "types": ["node"]
   },
-  "files": ["src/main.server.ts"],
-  "angularCompilerOptions": {
-    "enableIvy": true
-  }
+  "files": ["src/main.server.ts"]
 }
