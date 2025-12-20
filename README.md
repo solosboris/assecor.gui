@@ -176,4 +176,4 @@ ng generate component foundpersontable
 npm ci
 npm audit fix
 ng test
-ng serve --open --proxy-config src\proxy.conf.json
+ng serve --open

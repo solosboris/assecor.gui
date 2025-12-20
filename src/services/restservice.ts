@@ -8,7 +8,7 @@ import { PersonDTO } from '../models/persondto.model';
 })
 export class RESTService {
 
-  private baseUrl = '/persons'; // proxi url and suffix
+  private baseUrl = 'http://localhost:8080/persons'; // proxi url and suffix
   
   constructor(private http: HttpClient) {}
 
