@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit, inject } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -10,9 +10,10 @@ import { CdkContextMenuTrigger } from '@angular/cdk/menu';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { RESTService } from '../../services/restservice';
+import { PersonDTO } from '../../models/persondto.model';
 
 @Component({
-  selector: 'persons-table',
+  selector: 'app-persons-table',
   standalone: true,
   imports: [
     CommonModule,
@@ -29,19 +30,16 @@ import { RESTService } from '../../services/restservice';
   styleUrls: ['../../styles.css']
 })
 export class PersonTable implements OnInit, AfterViewInit {
+  private restService = inject(RESTService);
+  private router = inject(Router);
 
   @ViewChild(MatSort) sort!: MatSort;
-  personsDataSource = new MatTableDataSource<any>();
+  personsDataSource = new MatTableDataSource<PersonDTO>();
   displayedColumns: string[] = ["id", "name", "lastName", "zip", "city", "color"];
   error: string | null = null;
   isToShowByColor = false;
 
-  constructor(
-    private restService: RESTService,
-    private router: Router
-  ) {}
-
-  selectedRow: any = null;
+  selectedRow: PersonDTO = new PersonDTO();
 
   ngAfterViewInit() {
     this.personsDataSource.sort = this.sort;
@@ -51,13 +49,14 @@ export class PersonTable implements OnInit, AfterViewInit {
       );
   }
 
-  onMenuOpen(row: any) {
+  onMenuOpen(row: PersonDTO) {
     this.selectedRow = row;
     console.info(
       'PersonTable.onMenuOpen id ' + this.selectedRow.id +
       ' color ' + this.selectedRow.color
     );
-    this.restService.personsByColorCnt(this.selectedRow.color)
+    this.restService
+      .personsByColorCnt(this.selectedRow.color)
       .subscribe({
         next: (cnt) => {
           this.isToShowByColor = !isNaN(cnt) && (cnt > 1);
@@ -71,7 +70,7 @@ export class PersonTable implements OnInit, AfterViewInit {
         }
       });
   }
-  
+
   showPerson() {
     const navigaeToPerson = 'person/' + this.selectedRow.id;
     console.info('Contextmenu.showPerson to ' + navigaeToPerson);

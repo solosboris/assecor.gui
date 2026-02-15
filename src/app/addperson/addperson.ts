@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { RESTService } from '../../services/restservice';
 import { PersonDTO } from '../../models/persondto.model';
 
 @Component({
-  selector: 'addperson',
+  selector: 'app-add-person',
   standalone: true,
   imports: [
     CommonModule,
@@ -20,7 +20,7 @@ import { PersonDTO } from '../../models/persondto.model';
   styleUrls: ['../../styles.css']
 })
 export class Addperson implements OnInit {
-    
+
   id: number = -1;
   name: string = '';
   lastName: string = '';
@@ -29,10 +29,8 @@ export class Addperson implements OnInit {
   color: string = '';
   error: string | null = null;
 
-  constructor(
-    private restService: RESTService,
-    private router: Router
-  ) { }
+  private readonly restService = inject(RESTService)
+  private readonly router = inject(Router)
 
   ngOnInit(): void {
     console.info('Addperson.ngOnInit');
@@ -48,7 +46,7 @@ export class Addperson implements OnInit {
     console.info('Addperson.addPerson ', createPerson);
 
     if (this.areValues()) {
-      this.restService.addPerson(createPerson).subscribe({    
+      this.restService.addPerson(createPerson).subscribe({
         next: (personId) => {
           console.info('Addperson.addPerson response ', personId);
           if (!isNaN(personId) && personId > 0) {

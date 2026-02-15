@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, ActivatedRoute } from '@angular/router';
@@ -7,7 +7,7 @@ import { PersonsTableService } from '../../services/personstableservice';
 import { RESTService } from '../../services/restservice';
 
 @Component({
-  selector: 'personsbycolor',
+  selector: 'app-personsbycolor',
   standalone: true,
   imports: [
     CommonModule,
@@ -19,14 +19,12 @@ import { RESTService } from '../../services/restservice';
   styleUrls: ['../../styles.css']
 })
 export class Personsbycolor implements OnInit {
+  private restService = inject(RESTService);
+  private personsTableService = inject(PersonsTableService);
+  private route = inject(ActivatedRoute);
+
 
   error: string | null = null;
-
-  constructor(
-    private restService: RESTService,
-    private personsTableService : PersonsTableService,
-    private route: ActivatedRoute
-  ) {}
 
   ngOnInit(): void {
     const color = this.route.snapshot.paramMap.get('color');
@@ -38,7 +36,7 @@ export class Personsbycolor implements OnInit {
         console.info(
           'Personsbycolor.ngOnInit data ' +
             this.personsTableService.personsDataSource.data.length
-        );        
+        );
       },
       error: () => {
         this.error = "Failed to load persons by the color";

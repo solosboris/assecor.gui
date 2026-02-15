@@ -10,7 +10,9 @@
       "architect": {
         "test": {
           "builder": "@angular/build:unit-test",
-          "options": { "runner": "karma" }
+          "options": {
+            "runner": "karma"
+          }
         },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -26,10 +28,15 @@
                 "output": "/"
               }
             ],
-            "styles": ["src/custom-theme.scss", "src/styles.css"]
+            "styles": [
+              "src/custom-theme.scss",
+              "src/styles.css"
+            ]
           },
           "configurations": {
-            "production": { "optimization": true },
+            "production": {
+              "optimization": true
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -70,11 +77,23 @@
             }
           },
           "defaultConfiguration": "development"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
